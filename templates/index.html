@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Check Student Result | Resultify{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="eyebrow">STUDENT PORTAL</div><h1>Your results,<br><span class="gradient">made simple.</span></h1>
+  <p>Securely check your academic performance using your roll number.</p>
+  <form class="search-card" method="POST">
+    <label for="roll_no">Student Roll Number</label>
+    <div class="search-row"><input id="roll_no" name="roll_no" placeholder="e.g. IT-2026-001" required><button class="btn primary" type="submit">View Result →</button></div>
+  </form>
+</section>
+{% if result %}<section class="result-preview"><h2>Result found!</h2><p>{{ result.student.name }} · {{ result.student.roll_no }}</p><a class="btn primary" href="{{ url_for('result_by_roll', roll_no=result.student.roll_no) }}">Open Marksheet</a></section>{% endif %}
+<section class="features"><div class="feature"><div class="feature-icon">✦</div><h3>Instant results</h3><p>Find your result in seconds with your roll number.</p></div><div class="feature"><div class="feature-icon">▤</div><h3>Clear marksheet</h3><p>View subjects, marks, percentage, and grade together.</p></div><div class="feature"><div class="feature-icon">⌁</div><h3>Print-ready</h3><p>Print or save your marksheet as a PDF.</p></div></section>
+{% endblock %}

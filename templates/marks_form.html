@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Manage Marks | Resultify{% endblock %}
+{% block content %}
+<section class="form-shell"><div class="eyebrow">ACADEMIC RECORD</div><h1>Manage marks</h1><p class="muted">{{ student.name }} · Roll no. {{ student.roll_no }}</p>
+<form method="POST" class="form-card"><div id="marks-rows">
+{% for m in marks %}<div class="marks-row"><div><label>Subject</label><input name="subject[]" value="{{ m.subject }}" required></div><div><label>Marks obtained</label><input name="obtained[]" type="number" min="0" step="0.5" value="{{ m.marks_obtained }}" required></div><div><label>Maximum marks</label><input name="maximum[]" type="number" min="1" step="0.5" value="{{ m.max_marks }}" required></div><button type="button" class="remove-row" onclick="this.parentElement.remove()">×</button></div>{% endfor %}
+{% if not marks %}<div class="marks-row"><div><label>Subject</label><input name="subject[]" placeholder="Mathematics" required></div><div><label>Marks obtained</label><input name="obtained[]" type="number" min="0" step="0.5" placeholder="85" required></div><div><label>Maximum marks</label><input name="maximum[]" type="number" min="1" step="0.5" value="100" required></div><button type="button" class="remove-row" onclick="this.parentElement.remove()">×</button></div>{% endif %}
+</div><button class="btn secondary" type="button" onclick="addRow()">＋ Add subject</button><div class="form-actions"><a class="btn secondary" href="{{ url_for('dashboard') }}">Cancel</a><button class="btn primary" type="submit">Save marks</button></div></form></section>
+<script>
+function addRow(){const row=document.createElement('div');row.className='marks-row';row.innerHTML='<div><label>Subject</label><input name="subject[]" placeholder="Subject name" required></div><div><label>Marks obtained</label><input name="obtained[]" type="number" min="0" step="0.5" required></div><div><label>Maximum marks</label><input name="maximum[]" type="number" min="1" step="0.5" value="100" required></div><button type="button" class="remove-row" onclick="this.parentElement.remove()">×</button>';document.getElementById('marks-rows').appendChild(row);}
+</script>
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Edit' if student else 'Add' }} Student | Resultify{% endblock %}
+{% block content %}
+<section class="form-shell"><div class="eyebrow">STUDENT RECORD</div><h1>{{ 'Edit student' if student else 'Add a student' }}</h1><p class="muted">Enter the student's basic academic details.</p>
+<form method="POST" class="form-card"><div class="form-grid"><div><label>Full name</label><input name="name" value="{{ student.name if student else '' }}" placeholder="Student full name" required></div><div><label>Roll number</label><input name="roll_no" value="{{ student.roll_no if student else '' }}" placeholder="e.g. IT-2026-001" required></div><div><label>Class / Department</label><input name="class_name" value="{{ student.class_name if student else '' }}" placeholder="e.g. BTech IT - Semester 1" required></div><div><label>Academic year</label><input name="academic_year" value="{{ student.academic_year if student else '2026-2027' }}" required></div></div><div class="form-actions"><a class="btn secondary" href="{{ url_for('dashboard') }}">Cancel</a><button class="btn primary" type="submit">Save student</button></div></form></section>
+{% endblock %}

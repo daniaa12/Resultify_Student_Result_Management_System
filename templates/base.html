@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Resultify | Student Results{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="navbar">
+  <a class="brand" href="{{ url_for('home') }}"><span class="brand-icon">R</span> Resultify</a>
+  <nav><a href="{{ url_for('home') }}">Check Result</a><a href="{{ url_for('admin_login') }}">Admin</a></nav>
+</header>
+<main class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}{% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+<footer>Resultify · Student Result Management System</footer>
+</body>
+</html>

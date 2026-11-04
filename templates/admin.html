@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard | Resultify{% endblock %}
+{% block content %}
+<div class="dashboard-head"><div><div class="eyebrow">ADMIN PANEL</div><h1>Dashboard</h1><p class="muted">Manage student records and academic results.</p></div><a class="btn secondary" href="{{ url_for('admin_logout') }}">Log out</a></div>
+<div class="stats"><div class="stat"><span>Total students</span><strong>{{ student_count }}</strong></div><div class="stat"><span>Mark entries</span><strong>{{ marks_count }}</strong></div><div class="stat"><span>System status</span><strong class="online">● Active</strong></div></div>
+<div class="section-head"><h2>Student directory</h2><a class="btn primary" href="{{ url_for('add_student') }}">＋ Add student</a></div>
+<div class="table-wrap"><table><thead><tr><th>Student</th><th>Roll number</th><th>Class</th><th>Academic year</th><th>Actions</th></tr></thead><tbody>
+{% for s in students %}<tr><td><b>{{ s.name }}</b></td><td>{{ s.roll_no }}</td><td>{{ s.class_name }}</td><td>{{ s.academic_year }}</td><td class="actions"><a href="{{ url_for('manage_marks', student_id=s.id) }}">Marks</a><a href="{{ url_for('edit_student', student_id=s.id) }}">Edit</a><a href="{{ url_for('result_by_roll', roll_no=s.roll_no) }}" target="_blank">View</a><form method="POST" action="{{ url_for('delete_student', student_id=s.id) }}" onsubmit="return confirm('Delete this student and their marks?')"><button class="link danger-text">Delete</button></form></td></tr>
+{% else %}<tr><td colspan="5" class="empty">No students yet. Click “Add student” to create your first record.</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}

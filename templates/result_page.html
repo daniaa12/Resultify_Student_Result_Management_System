@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Marksheet | Resultify{% endblock %}
+{% block content %}
+<section class="marksheet"><div class="marksheet-top"><div class="brand"><span class="brand-icon">R</span> Resultify</div><span class="status-pill">{{ result.status }}</span></div><div class="eyebrow">OFFICIAL RESULT SUMMARY</div><h1>Student Marksheet</h1>
+<div class="student-info"><div><span>Student name</span><b>{{ result.student.name }}</b></div><div><span>Roll number</span><b>{{ result.student.roll_no }}</b></div><div><span>Class / Department</span><b>{{ result.student.class_name }}</b></div><div><span>Academic year</span><b>{{ result.student.academic_year }}</b></div></div>
+<div class="table-wrap"><table><thead><tr><th>Subject</th><th>Marks obtained</th><th>Maximum marks</th><th>Result</th></tr></thead><tbody>{% for m in result.marks %}<tr><td>{{ m.subject }}</td><td>{{ m.marks_obtained|round(2) }}</td><td>{{ m.max_marks|round(2) }}</td><td><span class="subject-status">{{ 'Pass' if m.marks_obtained >= 0.35*m.max_marks else 'Needs improvement' }}</span></td></tr>{% else %}<tr><td colspan="4" class="empty">Marks have not been entered for this student.</td></tr>{% endfor %}</tbody></table></div>
+<div class="result-stats"><div><span>Total marks</span><strong>{{ result.total|round(2) }} / {{ result.maximum|round(2) }}</strong></div><div><span>Percentage</span><strong>{{ result.percentage|round(2) }}%</strong></div><div><span>Grade</span><strong>{{ result.grade }}</strong></div></div>
+<div class="print-actions"><a class="btn secondary" href="{{ url_for('home') }}">← Back</a><button class="btn primary" onclick="window.print()">Print / Save PDF</button></div><p class="disclaimer">This is a computer-generated result summary.</p></section>
+{% endblock %}

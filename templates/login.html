@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Admin Login | Resultify{% endblock %}
+{% block content %}
+<section class="form-shell narrow"><div class="eyebrow">ADMIN ACCESS</div><h1>Welcome back</h1><p class="muted">Sign in to manage students and results.</p>
+<form method="POST" class="form-card"><label>Username</label><input name="username" autocomplete="username" required><label>Password</label><input name="password" type="password" autocomplete="current-password" required><button class="btn primary full" type="submit">Sign in →</button></form>
+<p class="hint">Demo login: <b>admin</b> / <b>admin123</b>. Change credentials in app.py before public deployment.</p></section>
+{% endblock %}
