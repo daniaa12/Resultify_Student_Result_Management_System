@@ -204,6 +204,8 @@ def result_by_roll(roll_no):
         return render_template("not_found.html", roll_no=roll_no), 404
     return render_template("result_page.html", result=result_data(student))
 
-if __name__ == "__main__":
-    init_db()
+
+init_db()
+
+if _name_ == "_main_":
     app.run(debug=True)
